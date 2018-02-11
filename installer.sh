@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+pyinstaller -F -w -i coin.ico "wallet.py" --add-binary "coin.ico;." --add-binary "./Resources/bin/myntd.exe;." --add-binary "./Resources/bin/myntnote-wallet-rpc.exe;." --add-binary "./Resources/bin/mynt-wallet-cli.exe;." --add-binary "./Resources/bin/libwinpthread-1.dll;." --add-binary "./Resources/bin/libstdc++-6.dll;." --add-binary "./Resources/bin/libgcc_s_seh-1.dll;." --add-binary "./Resources/bin/libssl.a;." --add-binary "./Resources/bin/libcrypto.a;."
