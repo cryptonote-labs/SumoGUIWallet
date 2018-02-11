@@ -1,7 +1,7 @@
-# Electroneum GUI Wallet
+# Mynt GUI Wallet
 
 This is a fork of the **Sumokoin GUI Wallet**: https://github.com/sumoprojects/SumoGUIWallet
-It is changed to be compatible with Electroneum.
+It is fully and wholly compatible with Mynt.
 
 
 1. Install dependencies (with Python 2.7):
@@ -19,11 +19,11 @@ It is changed to be compatible with Electroneum.
 			sudo apt install python-pyside
 
 
-2. Build/download Electroneum binaries from [Electroneum repo](https://github.com/electroneum/electroneum) and put it to `Resources/bin` sub-directory.
+2. Build/download Mynt binaries from [Mynt repo](https://github.com/altcoincoop/mynt) and put it to `Resources/bin` sub-directory.
 
 3. Run the wallet (Python 2.7):
 		
-		cd /path/to/SumoGUIWallet
+		cd /path/to/MyntGuiWallet
 		python wallet.py
 
 4. Contribution
