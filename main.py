@@ -66,7 +66,7 @@ def main():
     if sys.platform == 'darwin':
         app.setAttribute(QtCore.Qt.AA_DontShowIconsInMenus)
         
-    if not ("b22a9cb437e235dab29a84e94e309666f9b4322b6aae903906f5bd045abf7bf3" == sys_lockhash):
+    if not ("3c64ecf71138126183cd46630587fda65c48eda9fafe4c2d624e8dcfb1cf9684" == sys_lockhash):
         QMessageBox.critical(None, "Application Fatal Error", """<b>File integrity check failed!</b>
                 <br><br>This could be a result of unknown (maybe, malicious) action<br> to wallet code files.""")
         app.quit()

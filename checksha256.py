@@ -21,7 +21,7 @@ def checkmain():
             sys.stdout = old_stdout
             log_file.close()   
             sys_lockhash = keyhasher.hexdigest()
-            if not ("aeff03972fefb3f981bfae14b6208f34d73fd7165a7ec8bed4acdbef03daf9a9" == sys_lockhash):
+            if not ("30ef37d9e599e15dcb2ad01b8b064f4d4078cb4ae1d9fce67e1e22d16949a753" == sys_lockhash):
             	print("Application Fatal Error. File integrity check failed! This could be a result of unknown (maybe, malicious) action to wallet code files. ")
             	app.quit()
             else:

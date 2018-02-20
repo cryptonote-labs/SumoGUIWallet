@@ -61,13 +61,13 @@ if not ("b99fbff76e6c266a72e9a6054b9fe79f73c65f1e0f789d79bfb5acdbdd8cbfc6" == ap
 	print("APP Not SHA256 Verified")
 if not ("1eccf9bc1a830e9b81f4014ceb8280c8ac8eaddbd4449f6e13136132bc94bc35" == manhasher.hexdigest()):
 	print("MANAGER Not SHA256 Verified")
-if not ("4226811bf4615e939531ca983263f37d7777edf3804d509660cd51f4667a82e0" == reshasher.hexdigest()):
+if not ("78f4f21608f487ad6177016191caf4e4a8d0e195581be4a9db66fc66b7ae62df" == reshasher.hexdigest()):
 	print("RESOURCES Not SHA256 Verified")
 if ("b99fbff76e6c266a72e9a6054b9fe79f73c65f1e0f789d79bfb5acdbdd8cbfc6" == apphasher.hexdigest()):
 	print("APP Verified by SHA256")
 	print("Adding {} to Passed Checks.".format(AddValue))
 	Counter = Counter + AddValue
-if ("4226811bf4615e939531ca983263f37d7777edf3804d509660cd51f4667a82e0" == reshasher.hexdigest()):
+if ("78f4f21608f487ad6177016191caf4e4a8d0e195581be4a9db66fc66b7ae62df" == reshasher.hexdigest()):
 	print("RESOURCES Verified by SHA256")
 	print("Adding {} to Passed Checks.".format(AddValue))
 	Counter = Counter + AddValue
