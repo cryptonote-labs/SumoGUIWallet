@@ -276,7 +276,10 @@ html ="""
             }
             
             .wallet-settings button{
-                margin-left: 20px;
+                margin-left: 15px;
+            }
+            .wallet-settings button:last-child{
+                margin-right: 15px;
             }
             
             .form-control.address-box{
@@ -370,12 +373,128 @@ html ="""
                 background-color: #5BB0F7;
             }
             
+            
+            #qrcode_dialog_body h3
+            {
+                font-size: 18px;
+                word-break: break-all;
+                margin: 0 15px 15px;
+                
+            }
+            
+            .identicon
+            {
+                width: 32px;
+                height: 32px;
+                box-shadow: inset rgba(255, 255, 255, 0.6) 0 2px 2px, inset rgba(0, 0, 0, 0.3) 0 -2px 6px;
+            }
+            .identicon canvas
+            {
+                width: 100%;
+                height: 100%;
+
+            }
+            .identicon[data-addr^='Sumo'] canvas
+            {
+                /*outline: 2px solid blue;*/
+            }
+            
+            .identicon[data-addr^='Subo'] canvas
+            {
+                /*outline: 2px solid red;*/
+            }
+            #receive_address_identicon
+            {
+                position: absolute;
+                top: 0;
+                left: 15px;
+                width: 48px;
+                height: 48px;
+            }
+            #qrcode_dialog_body .identicon
+            {
+                margin: 0 auto;
+                width: 200px;
+                height: 200px;
+            }
+            
+            #paper_wallet_modal_dialog .modal-dialog
+            {
+                width: 768px;
+            }
+            #paper_wallet_modal_dialog .modal-footer
+            {
+                padding-top: 0;
+            }
+            #paper_wallet_model_body
+            {
+                padding: 0;
+            }
+            #paper_wallet
+            {
+                padding: 15px;
+                background: url(./images/paper-wallet.png) center left no-repeat;
+            }
+            #paper_wallet::after {
+                content: "";
+                clear: both;
+                display: table;
+            }
+            #paper_wallet .qr_code_label
+            {
+                -webkit-transform: rotate(-90deg);
+                position: absolute;
+                bottom: 70px;
+                right: -50px;
+                width: 150px;
+                margin: 0;
+                text-align: center;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+            }
+            #paper_wallet_info
+            {
+                margin-top: 15px;
+                line-height: 1.5em;
+            }
+            #paper_wallet_info strong
+            {
+                font-weight: normal;
+            }
+            #paper_wallet_info .monospace
+            {
+                font-family: "Lucida Console", Monaco, monospace;
+                overflow-wrap: break-word;
+            }
+            #paper_wallet_identicon
+            {
+                width: 48px;
+                height: 48px;
+                margin: 0 auto 5px;
+            }
+            #paper_wallet_identicon_text
+            {
+                font-size: 9px;
+                line-height: 1em;
+                text-align: justify;
+                position: absolute;
+            }
+
+            
+            
+            
+            
+            
+            
+            
+            
         </style>
         
         <script src="./scripts/jquery-1.9.1.min.js"></script>
         <script src="./scripts/bootstrap.min.js"></script>
         <script src="./scripts/mustache.min.js"></script>
         <script src="./scripts/jquery.qrcode.min.js"></script>
+        <script src="./scripts/blockies.min.js"></script>
         <script src="./scripts/utils.js"></script>
         <script type="text/javascript">
                                    
@@ -596,6 +715,19 @@ html ="""
                     }
                 });
                 
+                app_hub.on_view_paper_wallet_completed_event.connect(function(ret){
+                    if(ret){
+                        var data = JSON.parse(ret);
+                        var paper_wallet_tmpl = $('#paper_wallet_tmpl').html();
+                        var paper_wallet_rendered = Mustache.render(paper_wallet_tmpl, data);
+                        show_paper_wallet_dialog(paper_wallet_rendered);
+                        $('#paper_wallet .public_address.qr_code').qrcode({width: 150,height: 150, text: data.address});
+                        $('#paper_wallet .view_key.qr_code').qrcode({width: 150,height: 150, text: data.view_key});
+                        $('#paper_wallet .spend_key.qr_code').qrcode({width: 150,height: 150, text: data.spend_key});
+                        $('#paper_wallet_identicon').makeIdenticon(data.address, {scale: 6});
+                    }
+                });
+                
                 app_hub.on_restart_daemon_completed_event.connect(function(){
                     hide_progress();
                 });
@@ -718,6 +850,7 @@ html ="""
                     if(current_address != wallet_info['address']){
                         current_address = wallet_info['address'];
                         receive_address.val(current_address);
+                        $('#receive_address_identicon').makeIdenticon(current_address, {scale: 6});
                     }
                     
                     var table_body = $('#table_new_subaddresses tbody');
@@ -737,6 +870,7 @@ html ="""
                             
                         table_body.append(row_rendered);
                     }
+                    table_body.find('.identicon').makeIdenticon();
                     
                     table_body = $('#table_used_subaddresses tbody');
                     var used_subaddress_row_tmpl = $('#used_subaddress_row_tmpl').html();
@@ -758,6 +892,7 @@ html ="""
                             
                         table_body.append(row_rendered);
                     }
+                    table_body.find('.identicon').makeIdenticon();
                     
                     hide_app_progress();
                     $('[data-toggle="tooltip"]').tooltip();
@@ -766,8 +901,11 @@ html ="""
             }
             
             function show_qrcode(text){
-                $('#qrcode_dialog_body').html('');
-                $('#qrcode_dialog_body').qrcode({width: 200,height: 200, text: text});
+                $('#qrcode_dialog_body h3').html(text);
+                $('#qrcode_dialog_body .qr_code').html('');
+                $('#qrcode_dialog_body .qr_code').qrcode({width: 200,height: 200, text: text});
+                $('#qrcode_dialog_body .identicon').attr('data-addr', '');
+                $('#qrcode_dialog_body .identicon').makeIdenticon(text, {scale: 25});
                 $('#qrcode_dialog').modal('show');
                 
             }
@@ -943,6 +1081,11 @@ html ="""
                 return false;
             }
             
+            function view_paper_wallet(){
+                app_hub.view_paper_wallet();
+                return false;
+            }
+            
             function set_daemon_log_level(level){
                 console.log(level);
                 app_hub.set_daemon_log_level(level);
@@ -966,6 +1109,16 @@ html ="""
             
             function hide_app_dialog(){
                 $('#app_modal_dialog').modal('hide');
+            }
+            
+            function show_paper_wallet_dialog(html){
+                $('#paper_wallet_model_body').css("color", "#666"); 
+                $('#paper_wallet_model_body').html(html);
+                $('#paper_wallet_modal_dialog').modal('show');
+            }
+            
+            function hide_paper_wallet_dialog(){
+                $('#paper_wallet_modal_dialog').modal('hide');
             }
             
             function show_alert(msg, title){
@@ -1007,7 +1160,13 @@ html ="""
                 app_hub.copy_text( $('#app_model_body .copied').text() );
                 $('#btn_copy').text('Copied');
             }
- 
+            
+            function print_paper_wallet(){
+
+            }
+            
+            
+            
             $(document).ready(function(){
                 progress_bar_text_low = $('#progress_bar_text_low');
                 progress_bar_text_high = $('#progress_bar_text_high');
@@ -1079,6 +1238,7 @@ html ="""
                 <div id="receive_tab" class="tab-pane fade">
                     <h3>RECEIVE</h3>
                     <form id="form_receive" class="form-horizontal">
+                                    <div id="receive_address_identicon" class="identicon"></div>
                         <div class="form-group">
                             <div class="col-sm-12">
                                 <label for="receive_address" class="col-xs-2 control-label">Main Address</label>
@@ -1107,6 +1267,7 @@ html ="""
                                     <table id="table_used_subaddresses" class="table table-hover table-striped table-condensed">
                                         <thead>
                                             <tr>
+                                                <th></th>
                                                 <th>Address</th>
                                                 <th style="text-align: right">Balance</th>
                                                 <th style="text-align: right">Unlocked</th>
@@ -1135,6 +1296,7 @@ html ="""
                                     <table id="table_new_subaddresses" class="table table-hover table-striped table-condensed">
                                         <thead>
                                             <tr>
+                                                <th></th>
                                                 <th>Address</th>
                                                 <th style="text-align: right">Index</th>
                                                 <th>&nbsp;</th>
@@ -1297,10 +1459,11 @@ html ="""
                     <h3>WALLET</h3>
                     <div class="row">
                         <div class="col-sm-12 wallet-settings">
-                            <button id="btn_new_wallet" type="button" class="btn btn-primary" onclick="open_new_wallet()"><i class="fa fa-file"></i> New Wallet...</button>
-                            <button id="btn_view_seed" type="button" class="btn btn-primary" onclick="view_wallet_key('mnemonic')"><i class="fa fa-eye"></i> Mnemonic Seed...</button>
-                            <button id="btn_view_viewkey" type="button" class="btn btn-primary" onclick="view_wallet_key('view_key')"><i class="fa fa-key"></i> Viewkey...</button>
-                            <button id="btn_view_spendkey" type="button" class="btn btn-primary" onclick="view_wallet_key('spend_key')"><i class="fa fa-key"></i> Spendkey...</button>
+                            <button id="btn_new_wallet" type="button" class="btn btn-primary" onclick="open_new_wallet()"><i class="fa fa-file"></i> New Wallet</button>
+                            <button id="btn_view_seed" type="button" class="btn btn-primary" onclick="view_wallet_key('mnemonic')"><i class="fa fa-eye"></i> Mnemonic Seed</button>
+                            <button id="btn_view_viewkey" type="button" class="btn btn-primary" onclick="view_wallet_key('view_key')"><i class="fa fa-key"></i> Viewkey</button>
+                            <button id="btn_view_spendkey" type="button" class="btn btn-primary" onclick="view_wallet_key('spend_key')"><i class="fa fa-key"></i> Spendkey</button>
+                            <button id="btn_view_paperwallet" type="button" class="btn btn-primary" onclick="view_paper_wallet()"><i class="fa fa-key"></i> Paper Wallet</button>
                         </div>
                     </div>
                     <hr style="margin-top:20px;margin-bottom:10px;">
@@ -1419,6 +1582,18 @@ html ="""
             </div>
         </div>
         
+        <div class="modal" id="paper_wallet_modal_dialog" style="z-index: 100000;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body" id="paper_wallet_model_body"></div>
+                    <div class="modal-footer">
+                        <button id="btn_print" type="button" class="btn btn-primary" onclick="print_paper_wallet()">Print</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         <div class="modal" id="sending_modal_progress" style="z-index: 100001;" data-backdrop="static">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -1448,7 +1623,16 @@ html ="""
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body" style="text-align:center" id="qrcode_dialog_body"></div>
+                    <div class="modal-body" style="text-align:center" id="qrcode_dialog_body">
+                        <h3></h3>
+                        <div class="col-sm-6 text-center">
+                            <div class="identicon"></div>
+                            <div>Always look for this icon when sending to this wallet.</div>
+                        </div>
+                        <div class="col-sm-6 text-center">
+                            <div class="qr_code"></div>
+                        </div>
+                    </div>
                     <div class="modal-footer">
                         
                     </div>
@@ -1527,6 +1711,7 @@ html ="""
         
         <script id="new_subaddress_row_tmpl" type="x-tmpl-mustache">
             <tr class="" style="font-weight: normal;color:#333;">
+                <td><div class="identicon" data-addr="{{ address }}"></div></td>
                 <td>{{ address_short }}</td>
                 <td align="right">{{ address_index }}</td>
                 <td align="right">
@@ -1538,6 +1723,7 @@ html ="""
         
         <script id="used_subaddress_row_tmpl" type="x-tmpl-mustache">
             <tr class="" style="font-weight:{{ row_font_weight }};color:#333;">
+                <td><div class="identicon" data-addr="{{ address }}"></div></td>
                 <td>{{ address_short }}</td>
                 <td align="right">{{ balance }}</td>
                 <td align="right">{{ unlocked_balance }}</td>
@@ -1547,6 +1733,57 @@ html ="""
                     <button class="btn btn-primary btn-sm" tabindex="-1" onclick="show_qrcode('{{ address }}')" title="Show QR code"><i class="fa fa-qrcode"></i></button>    
                 </td>
             </tr>
+        </script>
+        
+        <script id="paper_wallet_tmpl" type="x-tmpl-mustache">
+            <div id="paper_wallet">
+                <div class="col-xs-2">
+                </div>
+                <div class="col-xs-10">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <div class="public_address qr_code"></div>
+                            <p class="qr_code_label">Your Address</p>
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="view_key qr_code"></div>
+                            <p class="qr_code_label">View Key</p>
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="spend_key qr_code"></div>
+                            <p class="qr_code_label">Spend Key</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="paper_wallet_info" class="col-xs-12">
+                            <div class="row">
+                                <div class="col-xs-10">
+                                    <p>
+                                        <strong>Your Address:</strong><br/>
+                                        <span class="monospace">{{ address }}</span>
+                                    </p>
+                                </div>
+                                <div class="col-xs-2">
+                                    <div id="paper_wallet_identicon" class="identicon"></div>
+                                    <div id="paper_wallet_identicon_text">Always look for this icon when sending to this wallet.</div>
+                                </div>
+                            </div>
+                            <p>
+                                <strong>View Key:</strong><br/>
+                                <span class="monospace">{{ view_key }}</span>
+                            </p>
+                            <p>
+                                <strong>Spend Key:</strong><br/>
+                                <span class="monospace">{{ spend_key }}</span>
+                            </p>
+                            <p>
+                                <strong>Seed Words:</strong><br/>
+                                <span class="monospace">{{ seed }}</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </script>
     </body>
 </html>

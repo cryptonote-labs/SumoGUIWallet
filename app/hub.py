@@ -574,7 +574,29 @@ class Hub(QObject):
             title = "Wallet spend-key"
         
         self.on_view_wallet_key_completed_event.emit(title, ret)
+
+    @Slot()
+    def view_paper_wallet(self):
+        wallet_password, result = self._custom_input_dialog(self.ui, \
+                        "Wallet Password", "Please enter wallet password:", QLineEdit.Password)
+        if not result:
+            self.on_view_paper_wallet_completed_event.emit("");
+            return
         
+        if hashlib.sha256(wallet_password).hexdigest() != self.ui.wallet_info.wallet_password:
+            self.on_view_paper_wallet_completed_event.emit("");
+            QMessageBox.warning(self.ui, "Incorrect Wallet Password", "Wallet password is not correct!")
+            return
+        
+        wallet_rpc_request = self.ui.wallet_rpc_manager.rpc_request
+        wallet_info = {}
+        wallet_info['address'] = self.ui.wallet_info.wallet_address
+        wallet_info['seed'] = wallet_rpc_request.query_key(key_type="mnemonic")
+        wallet_info['view_key'] = wallet_rpc_request.query_key(key_type="view_key")
+        wallet_info['spend_key'] = wallet_rpc_request.query_key(key_type="spend_key")
+        
+        self.on_view_paper_wallet_completed_event.emit(json.dumps(wallet_info))
+    
     
     @Slot(int)
     def set_daemon_log_level(self, level):
@@ -686,6 +708,7 @@ class Hub(QObject):
     on_tx_detail_found_event = Signal(str)
     on_load_tx_history_completed_event = Signal(str)
     on_view_wallet_key_completed_event = Signal(str, str)
+    on_view_paper_wallet_completed_event = Signal(str)
     on_load_app_settings_completed_event = Signal(str)
     on_restart_daemon_completed_event = Signal()
     on_paste_seed_words_event = Signal(str)

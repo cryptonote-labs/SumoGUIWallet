@@ -25,6 +25,25 @@ Number.prototype.formatMoney = function(n, x, s, c) {
     return (c ? num.replace('.', c) : num).replace(new RegExp(re, 'g'), '$&' + (s || ','));
 };
 
+// Extend jQuery to add a makeIdenticon function
+$.fn.makeIdenticon = function(address, options){
+    this.each(function(){
+        if(!$(this).hasClass('identicon')) return;
+	if($(this).attr('data-addr')) {
+	    address = $(this).attr('data-addr');
+	} else {
+	    $(this).attr('data-addr', address);
+	}
+        options = $.extend({
+            size: 8, scale: 4,
+	}, options);
+	options.seed = address;
+        var icon = blockies.create(options);
+	this.innerHTML = "";
+	this.appendChild(icon);
+    });
+};
+
 // Extended disable function
 jQuery.fn.extend({
     disable: function(state) {
