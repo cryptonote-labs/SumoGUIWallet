@@ -114,7 +114,7 @@ class BaseWebUI(QMainWindow):
         self.setWindowIcon(self.icon)
         
         self.setCentralWidget(self.view)
-        self.setFixedSize(window_size)
+        self.setMinimumSize(window_size)
         self.center()
         
         if sys.platform == 'win32':

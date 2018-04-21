@@ -10,6 +10,7 @@ html ="""
 <html>
     <head>
         <link href="./css/bootstrap.min.css" rel="stylesheet">
+        <link href="./css/dark-theme.css" rel="stylesheet">
         <link href="./css/font-awesome.min.css" rel="stylesheet">
         <style type="text/css">
             * {
@@ -59,11 +60,22 @@ html ="""
             }
             
             .container{
-                width: 760px;
+                width: auto;
+                position: absolute;
+                margin: 0;
                 padding: 0;
-                margin: 5px 0px 5px 20px;
+                top: 5px;
+                right: 20px;
+                bottom: 5px;
+                left: 20px;
             }
-            
+            .container > .tab-content{
+                position: absolute;
+                top: 72px;
+                right: 0;
+                bottom: 72px;
+                left: 0;
+            }
             h3{
                 text-align: center;
                 margin-bottom: 1em;
@@ -88,7 +100,6 @@ html ="""
             }
             
             #settings_tab h3{
-                margin-top: 20px;
                 margin-bottom: 30px;
             }
             
@@ -109,6 +120,10 @@ html ="""
                 height: 22px;
                 text-align: center;
                 background: #ddd;
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
             }
             
             #progress_bar_text_high{
@@ -373,7 +388,7 @@ html ="""
             .modal-progress-subtext{
                 text-align: center;
             }
-            
+
         </style>
         
         <script src="./scripts/jquery-1.9.1.min.js"></script>
@@ -391,6 +406,10 @@ html ="""
                     $('#daemon_log_level_' + log_level).prop('checked', true);
                     var block_sync_size = app_settings['daemon']['block_sync_size'];
                     $('#block_sync_size_' + block_sync_size).prop('checked', true);
+                    var is_dark_mode = app_settings['gui']['dark_mode'];
+                    if(is_dark_mode) {
+                        $('body').addClass('dark-theme');
+                    }
                 });
                 
                 app_hub.on_main_wallet_ui_reset_event.connect(function(){
@@ -1030,7 +1049,12 @@ html ="""
                 app_hub.copy_text( $('#app_model_body .copied').text() );
                 $('#btn_copy').text('Copied');
             }
- 
+            
+            function toggle_dark_mode(){
+                $('body').toggleClass('dark-theme');
+                app_hub.set_dark_mode( $('body').hasClass('dark-theme') );
+            }
+            
             $(document).ready(function(){
                 progress_bar_text_low = $('#progress_bar_text_low');
                 progress_bar_text_high = $('#progress_bar_text_high');
@@ -1098,7 +1122,7 @@ html ="""
               <li><a data-toggle="tab" href="#tx_history_tab"><i class="fa fa-history"></i> TX History</a></li>
               <li><a data-toggle="tab" href="#settings_tab"><i class="fa fa-cogs"></i> Settings</a></li>
             </ul>
-            <div class="tab-content" style="height:490px; margin-top:20px;">
+            <div class="tab-content">
                 <div id="receive_tab" class="tab-pane fade">
                     <h3>RECEIVE</h3>
                     <form id="form_receive" class="form-horizontal">
@@ -1416,8 +1440,9 @@ html ="""
                     </div>
                     <hr style="margin-top:10px;margin-bottom:10px;">
                     <div class="row">
-                        <div class="col-sm-12" style="margin-top: 10px;text-align: center">
-                            <button id="btn_about" type="button" class="btn btn-primary" onclick="about_app()"><i class="fa fa-user"></i> About...</button>
+                        <div class="col-sm-12 wallet-settings" style="margin-top: 10px;text-align: center">
+                            <button id="btn_about" type="button" class="btn btn-primary" onclick="about_app()"><i class="fa fa-user"></i> About</button>
+                            <button id="btn_dark_mode" type="button" class="btn btn-primary" onclick="toggle_dark_mode()"><i class="fa fa-adjust"></i> Dark Mode</button>
                         </div>
                     </div>
                 </div>

@@ -90,6 +90,10 @@ class AppSettings():
         
         "blockchain": {
             "height": 0,
+        },
+
+        "gui": {
+            "dark_mode": False
         }
     }
     

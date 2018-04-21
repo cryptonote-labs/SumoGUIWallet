@@ -729,6 +729,12 @@ class Hub(QObject):
         self.on_new_wallet_show_info_event.emit(json.dumps(wallet_info))
     
     
+    @Slot(bool)
+    def set_dark_mode(self, is_dark_mode):
+        self.ui.app_settings.settings['gui']['dark_mode'] = is_dark_mode
+        self.ui.app_settings.save()
+    
+        
     on_new_wallet_show_info_event = Signal(str)
     on_new_wallet_show_progress_event = Signal(str)
     on_new_wallet_ui_reset_event = Signal()
