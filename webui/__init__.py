@@ -562,7 +562,10 @@ class MainWebUI(BaseWebUI):
             
     def _handleTrayIconActivate(self, reason):
         if reason == QSystemTrayIcon.DoubleClick:
-            self.showNormal()
+            if self.isMaximized():
+                self.showMaximized()
+            else:
+                self.showNormal()
             self.activateWindow()
         
     def handleExitAction(self, show_confirmation=True):
@@ -577,7 +580,10 @@ class MainWebUI(BaseWebUI):
             QTimer.singleShot(250, self.app.quit)
     
     def _handleShowAppAction(self):
-        self.showNormal()
+        if self.isMaximized():
+            self.showMaximized()
+        else:
+            self.showNormal()
         self.activateWindow()
         
     def handleAboutAction(self):

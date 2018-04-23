@@ -76,6 +76,24 @@ html ="""
                 bottom: 72px;
                 left: 0;
             }
+            .max-width{
+                max-width: 790px;
+            }
+
+            .col-centered{
+                float: none;
+                margin: 0 auto;
+            }
+            .col-label{
+                width: 115px;
+                position: absolute;
+            }
+            .col-field{
+                margin-left: 115px;
+                padding-left: 0;
+                padding-right: 0;
+            }
+
             h3{
                 text-align: center;
                 margin-bottom: 1em;
@@ -138,6 +156,14 @@ html ="""
             
             .control-label{
                 font-weight: bold;
+            }
+
+            .ellipsis{
+                text-overflow:ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+                word-break: break-all;
+                font-family: Menlo, Monaco, Consolas, "Courier New", monospace, mono;
             }
             
             .tx-list{
@@ -295,7 +321,7 @@ html ="""
             }
             
             .form-control.address-box{
-                font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+                font-family: Menlo, Monaco, Consolas, "Courier New", monospace, mono;
                 font-size: 85%;
                 color: #000;
             }
@@ -359,10 +385,71 @@ html ="""
             }
             
             .panel-default > .panel-heading + .panel-collapse > .panel-body {
-                height: 295px;
+                height: 290px;
                 overflow: auto;
             }
-            
+
+            /* Unless we switch from Bootstrap panels, this is the easiest way to make responsive */
+            @media screen and (min-height: 650px){
+                .panel-default > .panel-heading + .panel-collapse > .panel-body {
+                    height: 340px;
+                }
+            }
+            @media screen and (min-height: 700px){
+                .panel-default > .panel-heading + .panel-collapse > .panel-body {
+                    height: 390px;
+                }
+            }
+            @media screen and (min-height: 750px){
+                .panel-default > .panel-heading + .panel-collapse > .panel-body {
+                    height: 440px;
+                }
+            }
+            @media screen and (min-height: 800px){
+                .panel-default > .panel-heading + .panel-collapse > .panel-body {
+                    height: 490px;
+                }
+            }
+            @media screen and (min-height: 850px){
+                .panel-default > .panel-heading + .panel-collapse > .panel-body {
+                    height: 540px;
+                }
+            }
+            @media screen and (min-height: 900px){
+                .panel-default > .panel-heading + .panel-collapse > .panel-body {
+                    height: 590px;
+                }
+            }
+            @media screen and (min-height: 950px){
+                .panel-default > .panel-heading + .panel-collapse > .panel-body {
+                    height: 640px;
+                }
+            }
+            @media screen and (min-height: 1000px){
+                .panel-default > .panel-heading + .panel-collapse > .panel-body {
+                    height: 690px;
+                }
+            }
+            @media screen and (min-height: 1050px){
+                .panel-default > .panel-heading + .panel-collapse > .panel-body {
+                    height: 740px;
+                }
+            }
+            @media screen and (min-height: 1100px){
+                .panel-default > .panel-heading + .panel-collapse > .panel-body {
+                    height: 790px;
+                }
+            }
+            @media screen and (min-height: 1150px){
+                .panel-default > .panel-heading + .panel-collapse > .panel-body {
+                    height: 840px;
+                }
+            }
+            @media screen and (min-height: 1200px){
+                .panel-default > .panel-heading + .panel-collapse > .panel-body {
+                    height: 890px;
+                }
+            }
             
             .panel-default > .panel-heading + .panel-collapse > .panel-body::-webkit-scrollbar-track
             {
@@ -772,8 +859,7 @@ html ="""
                         var subaddress = new_subaddresses[i];
                         var row_rendered = Mustache.render(new_subaddress_row_tmpl, 
                             {   'address_index': subaddress['address_index'],
-                                'address' : subaddress['address'],
-                                'address_short' : subaddress['address'].substr(0, 70) + '...'
+                                'address' : subaddress['address']
                             });
                         
                             
@@ -791,7 +877,6 @@ html ="""
                         var row_rendered = Mustache.render(used_subaddress_row_tmpl, 
                             {   'address_index': subaddress['address_index'],
                                 'address' : subaddress['address'],
-                                'address_short' : subaddress['address'].substr(0, 40) + '...',
                                 'balance': subaddress['balance'],
                                 'unlocked_balance': subaddress['unlocked_balance'],
                                 'row_font_weight': subaddress['address_index'] == 0 ? 'bold' : 'normal'
@@ -1128,8 +1213,8 @@ html ="""
                     <form id="form_receive" class="form-horizontal">
                         <div class="form-group">
                             <div class="col-sm-12">
-                                <label for="receive_address" class="col-xs-2 control-label">Main Address</label>
-                                <div class="col-xs-10 input-group" style="padding-left: 15px; padding-right: 15px;">
+                                <label for="receive_address" class="col-label control-label">Main Address</label>
+                                <div class="col-field input-group">
                                     <input id="receive_address" type="text" class="form-control" style="font-weight: bold" maxlength="64" readonly />
                                     <span class="input-group-btn">
                                         <button id="btn_copy_address" class="btn btn-primary btn-sm" style="text-transform: none" type="button" tabindex="-1" onclick="copy_address()" data-toggle="tooltip" data-placement="bottom" data-trigger="manual" title="Address copied"><i class="fa fa-copy"></i></button>
@@ -1151,14 +1236,14 @@ html ="""
                           <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                             <div class="panel-body">
                                 <div class="table-responsive">
-                                    <table id="table_used_subaddresses" class="table table-hover table-striped table-condensed">
+                                    <table id="table_used_subaddresses" class="table table-hover table-striped table-condensed" style="table-layout: fixed;">
                                         <thead>
                                             <tr>
                                                 <th>Address</th>
-                                                <th style="text-align: right">Balance</th>
-                                                <th style="text-align: right">Unlocked</th>
-                                                <th style="text-align: right">Index</th>
-                                                <th>&nbsp;</th>
+                                                <th style="text-align: right; width: 100px">Balance</th>
+                                                <th style="text-align: right; width: 100px">Unlocked</th>
+                                                <th style="text-align: right; width: 50px">Index</th>
+                                                <th style="width: 80px">&nbsp;</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -1179,12 +1264,12 @@ html ="""
                           <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
                             <div class="panel-body" style="overflow: auto">
                                 <div class="table-responsive">
-                                    <table id="table_new_subaddresses" class="table table-hover table-striped table-condensed">
+                                    <table id="table_new_subaddresses" class="table table-hover table-striped table-condensed" style="table-layout: fixed">
                                         <thead>
                                             <tr>
                                                 <th>Address</th>
-                                                <th style="text-align: right">Index</th>
-                                                <th>&nbsp;</th>
+                                                <th style="text-align: right; width: 50px;">Index</th>
+                                                <th style="width: 80px;">&nbsp;</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -1226,8 +1311,8 @@ html ="""
                         <fieldset>
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <label for="send_amount" class="col-xs-2 control-label">Amount</label>
-                                    <div class="col-xs-10 input-group" style="padding-left: 15px;padding-right: 15px;">
+                                    <label for="send_amount" class="col-label control-label">Amount</label>
+                                    <div class="col-field input-group">
                                         <input id="send_amount" type="text" class="form-control" placeholder="0.0" maxlength="255"/>
                                         <span class="input-group-btn">
                                             <button id="btn_fill_all_money" class="btn btn-primary btn-sm"  style="text-transform: none" type="button" tabindex="-1" onclick="fill_all_money()" disabled>All coins</button>
@@ -1237,8 +1322,8 @@ html ="""
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <label for="send_address" class="col-xs-2 control-label">Address</label>
-                                    <div class="col-xs-10 input-group" style="padding-left: 15px; padding-right: 15px;">
+                                    <label for="send_address" class="col-label control-label">Address</label>
+                                    <div class="col-field input-group">
                                         <input id="send_address" type="text" class="form-control"  placeholder="Paste receiving address here (Ctrl+V)..." maxlength="110"/>
                                         <span class="input-group-btn">
                                             <button class="btn btn-primary btn-sm" style="text-transform: none" type="button" tabindex="-1" onclick="show_address_book()">
@@ -1250,24 +1335,24 @@ html ="""
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <label for="send_payment_id" class="col-xs-2 control-label">Payment ID</label>
-                                    <div class="col-xs-10">
+                                    <label for="send_payment_id" class="col-label control-label">Payment ID</label>
+                                    <div class="col-field">
                                         <input id="send_payment_id" type="text" class="form-control"  placeholder="Paste payment ID here (Ctrl+V, optional)..." maxlength="64"/>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <label for="send_tx_desc" class="col-xs-2 control-label">Description</label>
-                                    <div class="col-xs-10">
+                                    <label for="send_tx_desc" class="col-label control-label">Description</label>
+                                    <div class="col-field">
                                         <input id="send_tx_desc" type="text" class="form-control"  placeholder="Tx description, saved to local wallet history (optional)..." maxlength="255"/>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group max-width">
                                 <div class="col-sm-6">
-                                    <label for="send_mixins" class="col-xs-4 control-label">Privacy <sup>1</sup></label>
-                                    <div class="col-xs-8">
+                                    <label for="send_mixins" class="col-label control-label">Privacy <sup>1</sup></label>
+                                    <div class="col-field col-xs-8">
                                         <select id="send_mixins" class="form-control">
                                           <option value="12" selected>12 mixins (default)</option>
                                           <option value="15">15 mixins</option>
@@ -1293,10 +1378,10 @@ html ="""
                                     </div>
                                 </div>
                             </div>
-                             <div class="form-group">
+                             <div class="form-group max-width">
                                 <div class="col-sm-12">
-                                    <label class="col-xs-2 control-label sr-only">&nbsp;</label>
-                                    <div class="col-xs-10">
+                                    <label class="col-label control-label sr-only">&nbsp;</label>
+                                    <div class="col-field col-xs-10">
                                         <input id="checkbox_save_address" type="checkbox" /> <label for="checkbox_save_address">Save address (with payment id) to address book</label>
                                         <label style="color:#999"><small>1. Higher mixin (ringsize) means higher transaction cost, using default mixin# (12) is recommended</small></label>
                                         <label style="color:#999"><small>2. Only choose higher priority when there are many transactions in tx pool or "Normal" works just fine</small></label>
@@ -1304,7 +1389,7 @@ html ="""
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-sm-12" style="text-align: center">
+                                <div class="col-sm-12 text-center">
                                     <button id="btn_send_tx" type="button" class="btn btn-success" onclick="send_tx()" disabled><i class="fa fa-send"></i> Send</button>
                                 </div>
                             </div>
@@ -1353,7 +1438,7 @@ html ="""
                     <hr style="margin-top:20px;margin-bottom:10px;">
                     <h3>DAEMON</h3>
                     <div class="row">
-                        <div class="col-lg-12">
+                        <div class="max-width col-centered">
                             <div class="col-sm-5">
                                 <form class="form-horizontal">
                                     <div class="form-group">
@@ -1442,7 +1527,11 @@ html ="""
                     <div class="row">
                         <div class="col-sm-12 wallet-settings" style="margin-top: 10px;text-align: center">
                             <button id="btn_about" type="button" class="btn btn-primary" onclick="about_app()"><i class="fa fa-user"></i> About</button>
-                            <button id="btn_dark_mode" type="button" class="btn btn-primary" onclick="toggle_dark_mode()"><i class="fa fa-adjust"></i> Dark Mode</button>
+                            <button id="btn_dark_mode" type="button" class="btn btn-primary" onclick="toggle_dark_mode()">
+                                <i class="fa fa-adjust"></i>
+                                <span class="show-on-dark-mode">Light Mode</span>
+                                <span class="show-on-light-mode">Dark Mode</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -1576,7 +1665,7 @@ html ="""
         
         <script id="new_subaddress_row_tmpl" type="x-tmpl-mustache">
             <tr class="" style="font-weight: normal;color:#333;">
-                <td>{{ address_short }}</td>
+                <td class="ellipsis">{{ address }}</td>
                 <td align="right">{{ address_index }}</td>
                 <td align="right">
                     <button class="btn btn-primary btn-sm" tabindex="-1" onclick="copy_subaddress(this, '{{ address }}')" data-toggle="tooltip" data-placement="bottom" data-trigger="manual" title="Address copied"><i class="fa fa-copy"></i></button>
@@ -1587,7 +1676,7 @@ html ="""
         
         <script id="used_subaddress_row_tmpl" type="x-tmpl-mustache">
             <tr class="" style="font-weight:{{ row_font_weight }};color:#333;">
-                <td>{{ address_short }}</td>
+                <td class="ellipsis">{{ address }}</td>
                 <td align="right">{{ balance }}</td>
                 <td align="right">{{ unlocked_balance }}</td>
                 <td align="right">{{ address_index }}</td>

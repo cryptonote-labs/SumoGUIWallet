@@ -2,6 +2,21 @@
  * Sumokoin Dark Wallet Theme
 */
 
+.show-on-dark-mode {
+    display: none;
+}
+.dark-theme .show-on-dark-mode {
+    display: initial;
+}
+.dark-theme .show-on-light-mode {
+    display: none;
+}
+
+
+.dark-theme #receive_address {
+    color:white;
+}
+
 .dark-theme h1,
 .dark-theme h2,
 .dark-theme h3,
@@ -21,7 +36,7 @@
     border-color: #333;
 }
 .dark-theme select {
-    background: #121212;
+    background-color: #121212;
 }
 
 .dark-theme .panel {

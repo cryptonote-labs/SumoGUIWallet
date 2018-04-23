@@ -25,7 +25,7 @@ file_hashes = [
         ('www/scripts/utils.js', 'd0c6870ed19c92cd123c7443cb202c7629f9cd6807daed698485fda25214bdb4'),
         
         ('www/css/bootstrap.min.css', '9d517cad6f1744ab5eba382ccf0f53969f7d326e1336a6c2771e82830bc2c5ac'),
-        ('www/css/dark-theme.css', 'a6d4d342e1f4006f00fbc951e181bdd6d018f67f76c150c4b7820dbdead283e7'),
+        ('www/css/dark-theme.css', 'b2015193c656b573ebb4fc114d84d5c82b9a898d1224fb2c219e0750240185da'),
         ('www/css/font-awesome.min.css', 'b8b02026a298258ce5069d7b6723c2034058d99220b6612b54bc0c5bf774dcfb'),
         
         ('www/css/fonts/fontawesome-webfont.ttf', '7b5a4320fba0d4c8f79327645b4b9cc875a2ec617a557e849b813918eb733499'),
