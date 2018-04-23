@@ -64,6 +64,9 @@ log_text_tmpl = """
 </index>
 """
 
+dark_theme_qss = os.path.realpath(
+    os.path.join(os.getcwd(), os.path.dirname(__file__), "dark-theme.qss"))
+
 class LogViewer(QMainWindow):
     def __init__(self, parent, log_file):
         QMainWindow.__init__(self, parent)
@@ -246,6 +249,10 @@ class MainWebUI(BaseWebUI):
         self.system_tray_running_notified = False
         self.notifier = Notify(APP_NAME)
         self.trayIcon.show()
+
+        # Toggle QT dark mode
+        self.toggleDarkQT()
+
         
     
     def closeEvent(self, event):
@@ -605,3 +612,12 @@ class MainWebUI(BaseWebUI):
         
         self.app_settings.settings['blockchain']['height'] = self.target_height
         self.app_settings.save()
+
+    def toggleDarkQT(self):
+        if self.app_settings.settings['gui']['dark_mode']:
+            with open(dark_theme_qss,"r") as fh:
+                self.app.setStyleSheet(fh.read())
+        else:
+            self.app.setStyleSheet("")
+    
+    

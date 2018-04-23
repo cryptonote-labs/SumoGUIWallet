@@ -486,6 +486,23 @@ html ="""
         <script type="text/javascript">
                                    
             function app_ready(){
+
+                $(document).ready(function(){
+                    /* 
+                     * To not make the UI show light when preference is set to dark mode, we are going
+                     * to load the app settings without a timeout. Because the 2000ms delay is there
+                     * for a reason, we will also re-apply any settings in the below callback as well
+                     */
+                    app_hub.on_quick_load_ui_settings_completed_event.connect(function(app_settings_json){
+                        var app_settings = $.parseJSON(app_settings_json);
+                        var is_dark_mode = app_settings['gui']['dark_mode'];
+                        if(is_dark_mode) {
+                            $('body').addClass('dark-theme');
+                        }
+                    });
+                    app_hub.quick_load_ui_settings()
+                });
+
                 setTimeout(app_hub.load_app_settings, 2000);
                 app_hub.on_load_app_settings_completed_event.connect(function(app_settings_json){
                     var app_settings = $.parseJSON(app_settings_json);
