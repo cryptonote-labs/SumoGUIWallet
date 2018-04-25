@@ -13,8 +13,8 @@ import logging
 
 from utils.common import getHomeDir, makeDir
 
-USER_AGENT = "Mynt GUI Wallet"
-APP_NAME = "Mynt Wallet"
+USER_AGENT = "Kryptonium GUI Wallet"
+APP_NAME = "Kryptonium Wallet"
 VERSION = [0, 4, 0]
 
 
@@ -38,7 +38,7 @@ seed_languages = [("1", "English"),
                 ]
 
 # COIN - number of smallest units in one coin
-COIN = 1000000000000.0
+COIN = 1000000000.0
 
-WALLET_DAEMON_PORT = 24090
-RPC_DAEMON_PORT = 24091
+WALLET_DAEMON_PORT = 48090
+RPC_DAEMON_PORT = 48091
