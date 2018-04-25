@@ -158,7 +158,7 @@ html ="""
                     if(tx.hasOwnProperty('destinations')){
                         var destinations = tx['destinations'];
                         for(var i=0; i < destinations.length; i++ ){
-                            dest_html += '<li>Amount: <span class="tx-list tx-amount tx-' + tx['status'] + '">' + printMoney(destinations[i]['amount']/1000000000000) + "</span>Address: <strong>" + destinations[i]['address'] + "</strong></li>";
+                            dest_html += '<li>Amount: <span class="tx-list tx-amount tx-' + tx['status'] + '">' + printMoney(destinations[i]['amount']/1000000000) + "</span>Address: <strong>" + destinations[i]['address'] + "</strong></li>";
                         }
                     }
                     
@@ -171,8 +171,8 @@ html ="""
                                                             'tx_fa_icon': tx['direction'] == "in" ? "mail-forward" : "reply",
                                                             'tx_id': tx['txid'],
                                                             'tx_payment_id': tx['payment_id'], 
-                                                            'tx_amount': printMoney(tx['amount']/1000000000000.),
-                                                            'tx_fee': printMoney(tx['fee']/1000000000000.),
+                                                            'tx_amount': printMoney(tx['amount']/1000000000.),
+                                                            'tx_fee': printMoney(tx['fee']/1000000000.),
                                                             'tx_fee_hide': tx['fee'] > 0 ? '' : 'tx-fee-hide',
                                                             'tx_date': dateConverter(tx['timestamp']),
                                                             'tx_time': timeConverter(tx['timestamp']),
@@ -210,7 +210,7 @@ html ="""
                             'tx_id': tx['txid'],
                             'tx_id_short': tx['txid'].substring(0, 26) + "...",
                             'tx_payment_id': tx['payment_id'].substring(0, 16),
-                            'tx_amount': printMoney(tx['amount']/1000000000000.),
+                            'tx_amount': printMoney(tx['amount']/1000000000.),
                             'tx_height': tx['height'],
                             'cls_in_out': tx['status']
                         });
@@ -340,8 +340,8 @@ html ="""
                                                             'tx_fa_icon': tx['direction'] == "in" ? "mail-forward" : "reply",
                                                             'tx_id': tx['txid'],
                                                             'tx_payment_id': tx['payment_id'], 
-                                                            'tx_amount': printMoney(tx['amount']/1000000000000.),
-                                                            'tx_fee': printMoney(tx['fee']/1000000000000.),
+                                                            'tx_amount': printMoney(tx['amount']/1000000000.),
+                                                            'tx_fee': printMoney(tx['fee']/1000000000.),
                                                             'tx_fee_hide': tx['fee'] > 0 ? '' : 'tx-fee-hide',
                                                             'tx_date': dateConverter(tx['timestamp']),
                                                             'tx_time': timeConverter(tx['timestamp']),
