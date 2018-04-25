@@ -8,7 +8,7 @@ from __future__ import print_function
 # -*- coding: utf-8 -*-
 ## Copyright (c) 2017, The Sumokoin Project (www.sumokoin.org)
 '''
-Process managers for myntd, electroneum-wallet-cli and myntnote-wallet-rpc
+Process managers for kryptoniumd, kryptonium-wallet-cli and kryptonium-wallet-rpc
 '''
 
 import sys, os
@@ -79,8 +79,8 @@ class ProcessManager(Thread):
 
 class ElectroneumdManager(ProcessManager):
     def __init__(self, resources_path, log_level=0, block_sync_size=10):
-        proc_args = u'%s/bin/myntd --log-level %d --block-sync-size %d --rpc-bind-port %d' % (resources_path, log_level, block_sync_size, RPC_DAEMON_PORT)
-        ProcessManager.__init__(self, proc_args, "myntd")
+        proc_args = u'%s/bin/kryptoniumd --log-level %d --block-sync-size %d --rpc-bind-port %d' % (resources_path, log_level, block_sync_size, RPC_DAEMON_PORT)
+        ProcessManager.__init__(self, proc_args, "kryptoniumd")
         self.synced = Event()
         self.stopped = Event()
         
@@ -107,12 +107,12 @@ class WalletCliManager(ProcessManager):
     
     def __init__(self, resources_path, wallet_file_path, wallet_log_path, restore_wallet=False):
         if not restore_wallet:
-            wallet_args = u'%s/bin/mynt-wallet-cli --generate-new-wallet=%s --log-file=%s' \
+            wallet_args = u'%s/bin/kryptonium-wallet-cli --generate-new-wallet=%s --log-file=%s' \
                                                 % (resources_path, wallet_file_path, wallet_log_path)
         else:
-            wallet_args = u'%s/bin/mynt-wallet-cli --log-file=%s --restore-deterministic-wallet' \
+            wallet_args = u'%s/bin/kryptonium-wallet-cli --log-file=%s --restore-deterministic-wallet' \
                                                 % (resources_path, wallet_log_path)
-        ProcessManager.__init__(self, wallet_args, "mynt-wallet-cli")
+        ProcessManager.__init__(self, wallet_args, "kryptonium-wallet-cli")
         self.ready = Event()
         self.last_error = ""
         
@@ -148,9 +148,9 @@ class WalletRPCManager(ProcessManager):
     def __init__(self, resources_path, wallet_file_path, wallet_password, app, log_level=2):
         self.user_agent = str(uuid4().hex)
         wallet_log_path = os.path.join(os.path.dirname(wallet_file_path), "myntnote-wallet-rpc.log")
-        wallet_rpc_args = u'%s/bin/myntnote-wallet-rpc --disable-rpc-login --wallet-file %s --log-file %s --rpc-bind-port %d --log-level %d --daemon-port %d --password %s' % (resources_path, wallet_file_path, wallet_log_path, RPC_DAEMON_PORT+2, log_level, RPC_DAEMON_PORT, wallet_password)
+        wallet_rpc_args = u'%s/bin/kryptonium-wallet-rpc --disable-rpc-login --wallet-file %s --log-file %s --rpc-bind-port %d --log-level %d --daemon-port %d --password %s' % (resources_path, wallet_file_path, wallet_log_path, RPC_DAEMON_PORT+2, log_level, RPC_DAEMON_PORT, wallet_password)
         
-        ProcessManager.__init__(self, wallet_rpc_args, "myntnote-wallet-rpc")
+        ProcessManager.__init__(self, wallet_rpc_args, "kryptonium-wallet-rpc")
         
         self.rpc_request = WalletRPCRequest(app, self.user_agent)
         
