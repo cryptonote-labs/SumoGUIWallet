@@ -210,7 +210,7 @@ class Hub(QObject):
                                         if mnemonic_seed else "Creating wallet...")
                 self.app_process_events()
                 wallet_filepath = os.path.join(wallet_dir_path, str(uuid.uuid4().hex) + '.bin')
-                wallet_log_path = os.path.join(wallet_dir_path, 'mynt-wallet-cli.log')
+                wallet_log_path = os.path.join(wallet_dir_path, 'kryptonium-wallet-cli.log')
                 resources_path = self.app.property("ResPath")
                 if not mnemonic_seed: # i.e. create new wallet
                     self.wallet_cli_manager = WalletCliManager(resources_path, \
@@ -611,7 +611,7 @@ class Hub(QObject):
     
     @Slot()
     def view_daemon_log(self):
-        log_file = os.path.join(DATA_DIR, 'logs', "myntd.log")
+        log_file = os.path.join(DATA_DIR, 'logs', "kryptoniumd.log")
         log_dialog = LogViewer(parent=self.ui, log_file=log_file)
         log_dialog.load_log()
         
