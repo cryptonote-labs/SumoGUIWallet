@@ -374,7 +374,7 @@ class MainWebUI(BaseWebUI):
         
     def about(self):
         QMessageBox.about(self, "About", \
-            u"%s <br><br>Copyright© 2017-2018 - Mynt Project (www.myntnote.org)" % self.agent)
+            u"%s <br><br>Copyright© 2017-2018 - Kryptonium Project (www.kryptonium.io)" % self.agent)
     
     def _load_wallet(self):
         if self.wallet_info.load():
