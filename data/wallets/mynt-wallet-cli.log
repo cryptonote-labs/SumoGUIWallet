@@ -1,0 +1,62 @@
+2018-04-26 20:28:19.066	236204	INFO 	logging	contrib/epee/src/mlog.cpp:185	New log categories: *:WARNING,net:FATAL,net.p2p:FATAL,net.cn:FATAL,global:INFO,verify:FATAL,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2018-04-26 20:28:19.066	236204	INFO 	msgwriter	src/common/scoped_message_writer.h:102	This is the command line monero wallet. It needs to connect to a monero
+daemon to work correctly.
+
+2018-04-26 20:28:19.066	236204	INFO 	msgwriter	src/common/scoped_message_writer.h:102	Monero 'Lithium Luna' (v0.12.0.0-master-505d32fc)
+2018-04-26 20:28:19.067	236204	INFO 	msgwriter	src/common/scoped_message_writer.h:102	Logging to C:\code\py\SumoGUIWallet\data\wallets\mynt-wallet-cli.log
+2018-04-26 20:28:19.374	236204	WARN 	default	src/mnemonics/language_base.h:102	Español word 'asa' is shorter than its prefix length, 4
+2018-04-26 20:28:19.374	236204	WARN 	default	src/mnemonics/language_base.h:102	Español word 'ave' is shorter than its prefix length, 4
+2018-04-26 20:28:19.374	236204	WARN 	default	src/mnemonics/language_base.h:102	Español word 'boa' is shorter than its prefix length, 4
+2018-04-26 20:28:19.374	236204	WARN 	default	src/mnemonics/language_base.h:102	Español word 'cal' is shorter than its prefix length, 4
+2018-04-26 20:28:19.374	236204	WARN 	default	src/mnemonics/language_base.h:102	Español word 'dar' is shorter than its prefix length, 4
+2018-04-26 20:28:19.374	236204	WARN 	default	src/mnemonics/language_base.h:102	Español word 'don' is shorter than its prefix length, 4
+2018-04-26 20:28:19.374	236204	WARN 	default	src/mnemonics/language_base.h:102	Español word 'dos' is shorter than its prefix length, 4
+2018-04-26 20:28:19.374	236204	WARN 	default	src/mnemonics/language_base.h:102	Español word 'eco' is shorter than its prefix length, 4
+2018-04-26 20:28:19.374	236204	WARN 	default	src/mnemonics/language_base.h:102	Español word 'eje' is shorter than its prefix length, 4
+2018-04-26 20:28:19.374	236204	WARN 	default	src/mnemonics/language_base.h:102	Español word 'fax' is shorter than its prefix length, 4
+2018-04-26 20:28:19.374	236204	WARN 	default	src/mnemonics/language_base.h:102	Español word 'feo' is shorter than its prefix length, 4
+2018-04-26 20:28:19.374	236204	WARN 	default	src/mnemonics/language_base.h:102	Español word 'fin' is shorter than its prefix length, 4
+2018-04-26 20:28:19.374	236204	WARN 	default	src/mnemonics/language_base.h:102	Español word 'gen' is shorter than its prefix length, 4
+2018-04-26 20:28:19.374	236204	WARN 	default	src/mnemonics/language_base.h:102	Español word 'gol' is shorter than its prefix length, 4
+2018-04-26 20:28:19.374	236204	WARN 	default	src/mnemonics/language_base.h:102	Español word 'haz' is shorter than its prefix length, 4
+2018-04-26 20:28:19.374	236204	WARN 	default	src/mnemonics/language_base.h:102	Español word 'ira' is shorter than its prefix length, 4
+2018-04-26 20:28:19.374	236204	WARN 	default	src/mnemonics/language_base.h:102	Español word 'luz' is shorter than its prefix length, 4
+2018-04-26 20:28:19.374	236204	WARN 	default	src/mnemonics/language_base.h:102	Español word 'mar' is shorter than its prefix length, 4
+2018-04-26 20:28:19.374	236204	WARN 	default	src/mnemonics/language_base.h:102	Español word 'mes' is shorter than its prefix length, 4
+2018-04-26 20:28:19.374	236204	WARN 	default	src/mnemonics/language_base.h:102	Español word 'mil' is shorter than its prefix length, 4
+2018-04-26 20:28:19.374	236204	WARN 	default	src/mnemonics/language_base.h:102	Español word 'oca' is shorter than its prefix length, 4
+2018-04-26 20:28:19.374	236204	WARN 	default	src/mnemonics/language_base.h:102	Español word 'ojo' is shorter than its prefix length, 4
+2018-04-26 20:28:19.374	236204	WARN 	default	src/mnemonics/language_base.h:102	Español word 'ola' is shorter than its prefix length, 4
+2018-04-26 20:28:19.374	236204	WARN 	default	src/mnemonics/language_base.h:102	Español word 'oro' is shorter than its prefix length, 4
+2018-04-26 20:28:19.374	236204	WARN 	default	src/mnemonics/language_base.h:102	Español word 'oso' is shorter than its prefix length, 4
+2018-04-26 20:28:19.374	236204	WARN 	default	src/mnemonics/language_base.h:102	Español word 'pan' is shorter than its prefix length, 4
+2018-04-26 20:28:19.374	236204	WARN 	default	src/mnemonics/language_base.h:102	Español word 'pez' is shorter than its prefix length, 4
+2018-04-26 20:28:19.374	236204	WARN 	default	src/mnemonics/language_base.h:102	Español word 'pie' is shorter than its prefix length, 4
+2018-04-26 20:28:19.374	236204	WARN 	default	src/mnemonics/language_base.h:102	Español word 'red' is shorter than its prefix length, 4
+2018-04-26 20:28:19.374	236204	WARN 	default	src/mnemonics/language_base.h:102	Español word 'res' is shorter than its prefix length, 4
+2018-04-26 20:28:19.374	236204	WARN 	default	src/mnemonics/language_base.h:102	Español word 'rey' is shorter than its prefix length, 4
+2018-04-26 20:28:20.161	236204	INFO 	msgwriter	src/common/scoped_message_writer.h:102	Generated new wallet: KQYP4WUwZWoEqBtKEQqFq9ECcKSirrpNP7eDevyQbSwKcS36LDAAP2wdJQkMDeyxWuN9wmsXxtoXvWZa4aiZBkweDo7v2qM
+2018-04-26 20:28:20.161	236204	INFO 	msgwriter	src/common/scoped_message_writer.h:102	**********************************************************************
+Your wallet has been generated!
+To start synchronizing with the daemon, use the "refresh" command.
+Use the "help" command to see the list of available commands.
+Use "help <command>" to see a command's documentation.
+Always use the "exit" command when closing monero-wallet-cli to save 
+your current session's state. Otherwise, you might need to synchronize 
+your wallet again (your wallet keys are NOT at risk in any case).
+
+2018-04-26 20:28:20.161	236204	INFO 	msgwriter	src/common/scoped_message_writer.h:102	
+NOTE: the following 25 words can be used to recover access to your wallet. Write them down and store them somewhere safe and secure. Please do not store them in your email or on file storage services outside of your immediate control.
+
+2018-04-26 20:28:20.161	236204	INFO 	msgwriter	src/common/scoped_message_writer.h:102	**********************************************************************
+2018-04-26 20:28:20.163	236204	INFO 	msgwriter	src/common/scoped_message_writer.h:102	Starting refresh...
+2018-04-26 20:28:20.167	236204	INFO 	msgwriter	src/common/scoped_message_writer.h:102	Refresh done, blocks received: 0
+2018-04-26 20:28:20.167	236204	INFO 	msgwriter	src/common/scoped_message_writer.h:102	Untagged accounts:
+2018-04-26 20:28:20.167	236204	INFO 	msgwriter	src/common/scoped_message_writer.h:102	          Account               Balance      Unlocked balance                 Label
+2018-04-26 20:28:20.167	236204	INFO 	msgwriter	src/common/scoped_message_writer.h:102	 *       0 KQYP4W           0.000000000           0.000000000       Primary account
+2018-04-26 20:28:20.167	236204	INFO 	msgwriter	src/common/scoped_message_writer.h:102	----------------------------------------------------------------------------------
+2018-04-26 20:28:20.167	236204	INFO 	msgwriter	src/common/scoped_message_writer.h:102	          Total           0.000000000           0.000000000
+2018-04-26 20:28:20.167	236204	INFO 	msgwriter	src/common/scoped_message_writer.h:102	Currently selected account: [0] Primary account
+2018-04-26 20:28:20.167	236204	INFO 	msgwriter	src/common/scoped_message_writer.h:102	Tag: (No tag assigned)
+2018-04-26 20:28:20.167	236204	INFO 	msgwriter	src/common/scoped_message_writer.h:102	Balance: 0.000000000, unlocked balance: 0.000000000
+2018-04-26 20:28:20.167	236204	INFO 	msgwriter	src/common/scoped_message_writer.h:102	Background refresh thread started

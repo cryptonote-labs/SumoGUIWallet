@@ -1,0 +1,40 @@
+[2018-04-26 16:28:04,197] [INFO] [myntd] started
+[2018-04-26 16:28:05,325] [INFO] [myntd]>>> [36m2018-04-26 20:28:05.326	221976	INFO 	global	src/daemon/main.cpp:280	Monero 'Lithium Luna' (v0.12.0.0-master-505d32fc)
+[2018-04-26 16:28:05,326] [INFO] [myntd]>>> [0m[36m2018-04-26 20:28:05.327	221976	INFO 	global	src/daemon/protocol.h:53	Initializing cryptonote protocol...
+[2018-04-26 16:28:05,328] [INFO] [myntd]>>> [0m[36m2018-04-26 20:28:05.327	221976	INFO 	global	src/daemon/protocol.h:58	Cryptonote protocol initialized OK
+[2018-04-26 16:28:05,329] [INFO] [myntd]>>> [0m[36m2018-04-26 20:28:05.330	221976	INFO 	global	src/daemon/p2p.h:63	Initializing p2p server...
+[2018-04-26 16:28:07,085] [INFO] [myntd]>>> [0m[36m2018-04-26 20:28:07.085	221976	INFO 	global	src/daemon/p2p.h:68	p2p server initialized OK
+[2018-04-26 16:28:07,418] [INFO] [myntd]>>> [0m[36m2018-04-26 20:28:07.419	221976	INFO 	global	src/daemon/rpc.h:63	Initializing core RPC server...
+[2018-04-26 16:28:07,421] [INFO] [myntd]>>> [0m[36m2018-04-26 20:28:07.421	221976	INFO 	global	contrib/epee/include/net/http_server_impl_base.h:76	Binding on 127.0.0.1:48091
+[2018-04-26 16:28:07,421] [INFO] [myntd]>>> [0m[36m2018-04-26 20:28:07.421	221976	INFO 	global	src/daemon/rpc.h:69	core RPC server initialized OK on port: 48091
+[2018-04-26 16:28:07,421] [INFO] [myntd]>>> [0m[36m2018-04-26 20:28:07.421	221976	INFO 	global	src/daemon/core.h:86	Initializing core...
+[2018-04-26 16:28:07,421] [INFO] [myntd]>>> [0m[36m2018-04-26 20:28:07.422	221976	INFO 	global	src/cryptonote_core/cryptonote_core.cpp:427	Loading blockchain from folder C:\ProgramData\kryptonium\lmdb ...
+[2018-04-26 16:28:07,428] [INFO] [myntd]>>> [0m[33m2018-04-26 20:28:07.428	221976	WARN 	blockchain.db.lmdb	src/blockchain_db/lmdb/db_lmdb.cpp:75	Error attempting to retrieve a hard fork version at height 0 from the db: MDB_NOTFOUND: No matching key/data pair found
+[2018-04-26 16:28:07,494] [INFO] [myntd]>>> [0m[36m2018-04-26 20:28:07.495	221976	INFO 	global	src/cryptonote_core/cryptonote_core.cpp:525	Loading checkpoints
+[2018-04-26 16:28:08,009] [INFO] [myntd]>>> [0m[33m2018-04-26 20:28:08.010	221976	WARN 	net.dns	src/common/dns_utils.cpp:508	WARNING: no two valid MoneroPulse DNS checkpoint records were received
+[2018-04-26 16:28:08,010] [INFO] [myntd]>>> [0m[36m2018-04-26 20:28:08.010	221976	INFO 	global	src/daemon/core.h:92	Core initialized OK
+[2018-04-26 16:28:08,010] [INFO] [myntd]>>> [0m[36m2018-04-26 20:28:08.010	221976	INFO 	global	src/daemon/rpc.h:74	Starting core RPC server...
+[2018-04-26 16:28:08,010] [INFO] [myntd]>>> [0m[36m2018-04-26 20:28:08.010	[SRV_MAIN]	INFO 	global	src/daemon/rpc.h:79	core RPC server started ok
+[2018-04-26 16:28:08,029] [INFO] [myntd]>>> [0m[36m2018-04-26 20:28:08.030	[SRV_MAIN]	INFO 	global	src/daemon/p2p.h:78	Starting p2p net loop...
+[2018-04-26 16:28:09,030] [INFO] [myntd]>>> [0m[36m2018-04-26 20:28:09.031	[P2P7]	INFO 	global	src/cryptonote_core/cryptonote_core.cpp:1386	[1;33m
+[2018-04-26 16:28:09,030] [INFO] [myntd]>>> **********************************************************************
+[2018-04-26 16:28:09,032] [INFO] [myntd]>>> The daemon will start synchronizing with the network. This may take a long time to complete.
+[2018-04-26 16:28:09,032] [INFO] [myntd]>>> 
+[2018-04-26 16:28:09,032] [INFO] [myntd]>>> You can set the level of process detailization through "set_log <level|categories>" command,
+[2018-04-26 16:28:09,032] [INFO] [myntd]>>> where <level> is between 0 (no details) and 4 (very verbose), or custom category based levels (eg, *:WARNING).
+[2018-04-26 16:28:09,032] [INFO] [myntd]>>> 
+[2018-04-26 16:28:09,032] [INFO] [myntd]>>> Use the "help" command to see the list of available commands.
+[2018-04-26 16:28:09,032] [INFO] [myntd]>>> Use "help <command>" to see a command's documentation.
+[2018-04-26 16:28:09,032] [INFO] [myntd]>>> **********************************************************************
+[2018-04-26 16:28:09,032] [INFO] [myntd]>>> [0m
+[2018-04-26 16:28:09,134] [INFO] [myntd]>>> [0m[33m2018-04-26 20:28:09.133	[P2P7]	WARN 	net.dns	src/common/dns_utils.cpp:508	WARNING: no two valid MoneroPulse DNS checkpoint records were received
+[2018-04-26 16:28:11,069] [INFO] [myntd]>>> [0m[36m2018-04-26 20:28:11.069	[P2P7]	INFO 	global	src/cryptonote_protocol/cryptonote_protocol_handler.inl:310	[159.65.112.12:51184 INC] Sync data returned a new top block candidate: 1 -> 8 [Your node is 7 blocks (0 days) behind]
+[2018-04-26 16:28:11,069] [INFO] [myntd]>>> SYNCHRONIZATION started
+[2018-04-26 16:28:12,397] [INFO] [myntd]>>> [0m[36m2018-04-26 20:28:12.397	[P2P9]	INFO 	global	src/cryptonote_protocol/cryptonote_protocol_handler.inl:1167	[1;33m[159.65.112.12:51184 INC]  Synced 8/8[0m
+[2018-04-26 16:28:12,398] [INFO] [myntd]>>> [0m[36m2018-04-26 20:28:12.397	[P2P9]	INFO 	global	src/cryptonote_protocol/cryptonote_protocol_handler.inl:1557	[1;32mSYNCHRONIZED OK[0m
+[2018-04-26 16:28:12,398] [INFO] [myntd]>>> [0m[36m2018-04-26 20:28:12.397	[P2P9]	INFO 	global	src/cryptonote_protocol/cryptonote_protocol_handler.inl:1579	[1;33m
+[2018-04-26 16:28:12,398] [INFO] [myntd]>>> **********************************************************************
+[2018-04-26 16:28:12,398] [INFO] [myntd]>>> You are now synchronized with the network. You may now start monero-wallet-cli.
+[2018-04-26 16:28:12,398] [INFO] [myntd]>>> 
+[2018-04-26 16:28:12,398] [INFO] [myntd]>>> Use the "help" command to see the list of available commands.
+[2018-04-26 16:28:12,398] [INFO] [myntd]>>> **********************************************************************[0m
