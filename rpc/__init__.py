@@ -103,7 +103,7 @@ class RPCRequest(Thread):
 
 class DaemonRPCRequest():
     def __init__(self, app):
-        self.port = 19734
+        self.port = 48091
         self.url = "http://localhost:%d/json_rpc" % self.port
         self.app = app
         
@@ -119,7 +119,7 @@ class DaemonRPCRequest():
     
 class WalletRPCRequest():
     def __init__(self, app, user_agent):
-        self.port = 19736
+        self.port = 48092
         self.url = "http://localhost:%d/json_rpc" % self.port
         self.app = app
         self.user_agent = user_agent
