@@ -156,7 +156,7 @@ class WalletRPCManager(ProcessManager):
     def __init__(self, resources_path, wallet_file_path, wallet_password, app, log_level=1):
         self.user_agent = str(uuid4().hex)
         wallet_log_path = os.path.join(os.path.dirname(wallet_file_path), "kryptonium-wallet-rpc.log")
-        wallet_rpc_args = u'%s/bin/kryptonium-wallet-rpc --wallet-file %s --log-file %s --rpc-bind-port 19736 --user-agent %s --log-level %d' \
+        wallet_rpc_args = u'%s/bin/kryptonium-wallet-rpc --wallet-file %s --log-file %s --rpc-bind-port 48091 --user-agent %s --log-level %d' \
                                             % (resources_path, wallet_file_path, wallet_log_path, self.user_agent, log_level)
                                                                                 
         ProcessManager.__init__(self, wallet_rpc_args, "kryptonium-wallet-rpc")
