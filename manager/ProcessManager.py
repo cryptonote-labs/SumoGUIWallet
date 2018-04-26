@@ -104,10 +104,10 @@ class WalletCliManager(ProcessManager):
     
     def __init__(self, resources_path, wallet_file_path, wallet_log_path, restore_wallet=False, restore_height=0):
         if not restore_wallet:
-            wallet_args = u'%s/bin/kryptonium-wallet-cli --generate-new-wallet=%s --log-file=%s' \
+            wallet_args = u'%s/bin/kryptonium-wallet-cli --generate-new-wallet=%s --log-file=%s --daemon-port 48091' \
                                                 % (resources_path, wallet_file_path, wallet_log_path)
         else:
-            wallet_args = u'%s/bin/kryptonium-wallet-cli --log-file=%s --restore-deterministic-wallet --restore-height %d' \
+            wallet_args = u'%s/bin/kryptonium-wallet-cli --log-file=%s  --restore-deterministic-wallet --restore-height %d --daemon-port 48091' \
                                                 % (resources_path, wallet_log_path, restore_height)
         ProcessManager.__init__(self, wallet_args, "kryptonium-wallet-cli")
         self.ready = Event()
@@ -156,7 +156,7 @@ class WalletRPCManager(ProcessManager):
     def __init__(self, resources_path, wallet_file_path, wallet_password, app, log_level=1):
         self.user_agent = str(uuid4().hex)
         wallet_log_path = os.path.join(os.path.dirname(wallet_file_path), "kryptonium-wallet-rpc.log")
-        wallet_rpc_args = u'%s/bin/kryptonium-wallet-rpc --wallet-file %s --log-file %s --rpc-bind-port 48091 --user-agent %s --log-level %d' \
+        wallet_rpc_args = u'%s/bin/kryptonium-wallet-rpc --wallet-file %s --log-file %s --rpc-bind-port 48092 --user-agent %s --log-level %d' \
                                             % (resources_path, wallet_file_path, wallet_log_path, self.user_agent, log_level)
                                                                                 
         ProcessManager.__init__(self, wallet_rpc_args, "kryptonium-wallet-rpc")
