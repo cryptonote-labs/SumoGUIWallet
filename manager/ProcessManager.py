@@ -3,7 +3,7 @@
 ## Copyright (c) 2017, The Sumokoin Project (www.sumokoin.org)
 
 '''
-Process managers for sumokoind, sumo-wallet-cli and sumo-wallet-rpc
+Process managers for kryptoniumd, kryptonium-wallet-cli and kryptonium-wallet-rpc
 '''
 
 from __future__ import print_function
